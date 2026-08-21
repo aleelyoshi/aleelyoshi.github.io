@@ -7,13 +7,13 @@ permalink: /wii2035
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wii Y2K35 - El Juicio Final del Reloj de la Nintendo Wii</title>
+    <title>Wii Y2K35 - Decompilation & Native Cross-Platform Ports</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Inter:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;600&display=swap');
         
         body {
             font-family: 'Inter', sans-serif;
@@ -25,6 +25,10 @@ permalink: /wii2035
             font-family: 'Fredoka', sans-serif;
         }
 
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+
         /* Estilos inspirados en la interfaz retro-futurista limpia de la Wii */
         .wii-card {
             background: rgba(255, 255, 255, 0.9);
@@ -34,25 +38,25 @@ permalink: /wii2035
             border-radius: 24px;
         }
 
-        .wii-btn {
-            background: linear-gradient(180deg, #00d2ff 0%, #0096d6 100%);
-            transition: all 0.2s ease-in-out;
-            box-shadow: 0 4px 14px 0 rgba(0, 150, 214, 0.39);
-        }
-
-        .wii-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 150, 214, 0.54);
-        }
-
         .glow-text {
             text-shadow: 0 0 15px rgba(0, 180, 216, 0.4);
         }
 
-        /* Animación suave para los números del contador */
         .time-box {
             background: linear-gradient(135deg, #ffffff 0%, #e6f4f9 100%);
             border: 2px solid #bbeeef;
+        }
+
+        .decomp-gradient {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+
+        .console-card {
+            transition: all 0.25s ease-in-out;
+        }
+
+        .console-card:hover {
+            transform: translateY(-4px);
         }
     </style>
 </head>
@@ -67,13 +71,18 @@ permalink: /wii2035
                 </div>
                 <div>
                     <span class="text-2xl font-bold tracking-wider text-slate-700 wii-font">Wii <span class="text-cyan-500">2035</span></span>
-                    <span class="text-xs block text-slate-400 -mt-1 font-semibold">RTC Clock Limit Project</span>
+                    <span class="text-xs block text-slate-400 -mt-1 font-semibold">RTC Clock Limit & Cross-Platform Decompilation</span>
                 </div>
             </div>
-            <a href="#explicacion" class="hidden sm:flex items-center space-x-1 text-sm font-semibold text-cyan-600 hover:text-cyan-700">
-                <span>¿Por qué sucede?</span>
-                <i data-lucide="arrow-down" class="w-4 h-4"></i>
-            </a>
+            <nav class="hidden md:flex items-center space-x-6 text-sm font-semibold text-slate-600">
+                <a href="#explicacion" class="hover:text-cyan-600 transition">El Problema RTC</a>
+                <a href="#impacto" class="hover:text-cyan-600 transition">Juegos Afectados</a>
+                <a href="#decomp" class="hover:text-cyan-600 transition">decomp.dev</a>
+                <a href="#consolas" class="text-cyan-600 hover:text-cyan-700 font-bold flex items-center gap-1">
+                    <i data-lucide="gamepad" class="w-4 h-4"></i>
+                    <span>Ports Multiplataforma</span>
+                </a>
+            </nav>
         </div>
     </header>
 
@@ -84,14 +93,14 @@ permalink: /wii2035
         <section class="text-center space-y-6 pt-4">
             <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-100 border border-cyan-300 text-cyan-800 text-xs sm:text-sm font-semibold">
                 <i data-lucide="alert-triangle" class="w-4 h-4 text-cyan-600"></i>
-                <span>Fecha Límite del Reloj Interno de la Wii</span>
+                <span>Fecha Límite del Reloj Interno de la Nintendo Wii</span>
             </div>
 
             <h1 class="text-4xl sm:text-6xl font-bold text-slate-800 tracking-tight glow-text">
                 31 de Diciembre de 2035
             </h1>
             <p class="text-lg text-slate-600 max-w-2xl mx-auto font-light">
-                A las <span class="font-semibold text-slate-800">23:59:59</span>, el reloj del sistema de la Nintendo Wii alcanzará su límite absoluto programado de fábrica.
+                A las <span class="font-semibold text-slate-800">23:59:59</span>, el reloj interno (RTC) de la Nintendo Wii alcanzará su límite programado de fábrica.
             </p>
 
             <!-- Renderizador de Cuenta Regresiva -->
@@ -130,15 +139,15 @@ permalink: /wii2035
                     </div>
                     <h2 class="text-2xl font-bold text-slate-800 mb-3">¿Por qué el reloj de Wii se detiene en 2035?</h2>
                     <p class="text-slate-600 text-sm leading-relaxed mb-4">
-                        A diferencia del famoso <em>Efecto 2038</em> (Problema del año 2038 que afecta a sistemas Unix de 32 bits), el límite del año 2035 en la Nintendo Wii se debe a una especificación arbitraria definida por Nintendo en el firmware del RTC (Real Time Clock) y en los rangos de configuración del menú del sistema.
+                        A diferencia del conocido problema del año 2038 que afecta a ciertos entornos Unix de 32 bits, el límite del año 2035 en la Nintendo Wii se debe a una restricción arbitraria definida por Nintendo en el firmware del RTC (Real Time Clock) y en la interfaz gráfica de configuración del menú del sistema.
                     </p>
                     <p class="text-slate-600 text-sm leading-relaxed">
-                        El menú oficial de la consola no permite seleccionar una fecha posterior al **31/12/2035**. Una vez que el contador llegue al segundo 23:59:59 de esa fecha, el reloj interno no podrá avanzar al año 2036 de manera estándar, congelándose o reiniciando variables internas según cómo responda el software.
+                        El menú oficial no permite seleccionar una fecha posterior al **31/12/2035**. Al rebasar ese segundo final, los contadores de tiempo del sistema sufren un desbordamiento o reinicio que corrompe las llamadas a la API de tiempo que realizan los videojuegos.
                     </p>
                 </div>
                 <div class="mt-6 pt-4 border-t border-slate-200/60 text-xs text-slate-500 flex justify-between">
-                    <span>Límite de Hardware/Firmware</span>
-                    <span class="font-semibold text-slate-700">Rango: 2000 - 2035</span>
+                    <span>Límite de Firmware RTC</span>
+                    <span class="font-semibold text-slate-700">Rango oficial: 2000 - 2035</span>
                 </div>
             </div>
 
@@ -149,107 +158,279 @@ permalink: /wii2035
                     </div>
                     <h2 class="text-2xl font-bold text-slate-800 mb-3">Impacto en el Retrogaming</h2>
                     <p class="text-slate-600 text-sm leading-relaxed mb-4">
-                        Muchos títulos icónicos de la consola utilizan eventos basados en el tiempo real. Al superar la fecha límite, la lógica de estos juegos puede romperse por completo:
+                        Gran cantidad de títulos icónicos utilizan eventos basados en tiempo real. Al superar la fecha límite, la lógica interna de estos juegos detiene sus mecánicas principales:
                     </p>
                     <ul class="space-y-2 text-sm text-slate-600">
                         <li class="flex items-start gap-2">
                             <i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-500 shrink-0 mt-0.5"></i>
-                            <span><strong>Animal Crossing: City Folk:</strong> Pérdida de festivales, crecimiento impredecible de maleza y corrupción de eventos estacionales.</span>
+                            <span><strong>Animal Crossing: City Folk:</strong> Bloqueo de eventos estacionales, festividades y congelamiento de las rutinas de los vecinos.</span>
                         </li>
                         <li class="flex items-start gap-2">
                             <i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-500 shrink-0 mt-0.5"></i>
-                            <span><strong>Wii Sports / Wii Fit:</strong> Los calendarios de seguimiento de salud, entrenamientos y gráficos de edad Wii quedarán inoperativos.</span>
+                            <span><strong>Wii Sports / Wii Fit:</strong> Los calendarios de entrenamiento e historiales de edad Wii quedarán inoperativos al no registrar días futuros.</span>
                         </li>
                         <li class="flex items-start gap-2">
                             <i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-500 shrink-0 mt-0.5"></i>
-                            <span><strong>Juegos de Simulación y Granja:</strong> Títulos como *Harvest Moon* o *Los Sims 3* experimentarán bloqueos en guardados o bucles temporales infinitos.</span>
+                            <span><strong>Simuladores y RPGs:</strong> Marcas de tiempo (*timestamps*) inválidas en las partidas de guardado, provocando avisos de datos corruptos.</span>
                         </li>
                     </ul>
                 </div>
                 <div class="mt-6 pt-4 border-t border-slate-200/60 text-xs text-slate-500 flex justify-between">
                     <span>Efectos Principales</span>
-                    <span class="font-semibold text-slate-700">EventosRTC / Guardados</span>
+                    <span class="font-semibold text-slate-700">Eventos RTC / Corrupción de guardados</span>
                 </div>
             </div>
         </section>
 
-        <!-- Juegos más Afectados Grid -->
-        <section class="space-y-6">
+        <!-- Juegos Afectados -->
+        <section id="impacto" class="space-y-6">
             <div class="text-center max-w-xl mx-auto">
                 <h2 class="text-3xl font-bold text-slate-800">Juegos Dependientes del Reloj Real</h2>
-                <p class="text-slate-500 text-sm mt-1">Estos son los títulos que más sufrirán el impacto al llegar a 2036.</p>
+                <p class="text-slate-500 text-sm mt-1">Títulos cuya jugabilidad depende directamente de la fecha de la consola.</p>
             </div>
 
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Tarjeta Juego 1 -->
                 <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
                     <div class="flex items-center justify-between mb-3">
                         <h3 class="font-bold text-lg text-slate-800">Animal Crossing: City Folk</h3>
                         <span class="px-2.5 py-1 bg-red-100 text-red-700 text-xs rounded-full font-semibold">Crítico</span>
                     </div>
                     <p class="text-slate-600 text-sm leading-relaxed">
-                        El juego depende al 100% de la hora del sistema. Sin poder avanzar más allá de 2035, no habrá nuevos eventos anuales, cumpleaños ni cambios de estación legítimos.
+                        Al depender totalmente de la fecha del hardware, sin modificaciones en el código fuente resulta imposible continuar el ciclo vital de la ciudad tras 2035.
                     </p>
                 </div>
 
-                <!-- Tarjeta Juego 2 -->
                 <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
                     <div class="flex items-center justify-between mb-3">
                         <h3 class="font-bold text-lg text-slate-800">Wii Fit / Wii Fit Plus</h3>
                         <span class="px-2.5 py-1 bg-amber-100 text-amber-700 text-xs rounded-full font-semibold">Alto</span>
                     </div>
                     <p class="text-slate-600 text-sm leading-relaxed">
-                        El diario de seguimiento de peso y gráficos de progreso no podrán registrar días posteriores a 2035, arruinando la continuidad de los perfiles de usuario.
+                        Los diarios de IMC y pruebas de equilibrio sufren bloqueos al intentar graficar días que el sistema ya no puede procesar cronológicamente.
                     </p>
                 </div>
 
-                <!-- Tarjeta Juego 3 -->
                 <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
                     <div class="flex items-center justify-between mb-3">
-                        <h3 class="font-bold text-lg text-slate-800">Pikmin 2 (Guardados)</h3>
+                        <h3 class="font-bold text-lg text-slate-800">Pikmin 2 & Metroid Prime</h3>
                         <span class="px-2.5 py-1 bg-blue-100 text-blue-700 text-xs rounded-full font-semibold">Moderado</span>
                     </div>
                     <p class="text-slate-600 text-sm leading-relaxed">
-                        Los estampados de fecha y hora en los archivos de guardado (*timestamps*) pueden generar inconsistencias o marcar datos como corruptos en la memoria.
+                        Inconsistencias de ordenación en bloques de guardado. Los metadatos de fechas futuras entran en conflicto con las funciones de ordenación cronológica.
                     </p>
                 </div>
             </div>
         </section>
 
-        <!-- Preservación y Soluciones Futuras -->
-        <section class="wii-card p-6 sm:p-10">
+        <!-- SECCIÓN DE DESCOMPILACIÓN Y PROYECTO DECOMP.DEV -->
+        <section id="decomp" class="decomp-gradient text-white rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden border border-slate-700">
+            <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-4xl mx-auto space-y-8 relative z-10">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-700/80 pb-6">
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-cyan-500/20 text-cyan-300 text-xs font-mono mb-2 border border-cyan-500/30">
+                            <i data-lucide="git-branch" class="w-3.5 h-3.5"></i>
+                            <span>Ecosistema decomp.dev</span>
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+                            Descompilación: El Primer Paso para Liberar el Código
+                        </h2>
+                    </div>
+                    <a href="https://decomp.dev" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-sm transition shadow-lg shrink-0">
+                        <span>Portal decomp.dev</span>
+                        <i data-lucide="external-link" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="space-y-4 text-slate-300 text-sm leading-relaxed">
+                        <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                            <i data-lucide="terminal" class="w-5 h-5 text-cyan-400"></i>
+                            Ingeniería Inversa "Matching Decompilation"
+                        </h3>
+                        <p>
+                            Los proyectos organizados a través de **decomp.dev** reconstruyen el código fuente original en C/C++ de un juego comercial a partir del desensamblado de binarios PowerPC (`.dol` / `.rel` de Wii).
+                        </p>
+                        <p>
+                            Al conseguir una descompilación 1:1, los desarrolladores pueden compilar el código para arquitecturas modernas (x86_64, ARM64) y reemplazar el subsistema RTC de la consola por llamadas al sistema operativo anfitrión.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-900/90 rounded-2xl p-5 border border-slate-800 text-xs space-y-3 font-mono">
+                        <div class="flex items-center justify-between border-b border-slate-800 pb-2 text-slate-400">
+                            <span>wii_rtc_override.cpp</span>
+                            <span class="text-emerald-400">Port C++64</span>
+                        </div>
+                        <pre class="text-slate-300 overflow-x-auto"><code><span class="text-purple-400">// Solución en Port Nativo para cualquier sistema</span>
+<span class="text-blue-400">uint64_t</span> <span class="text-emerald-300">GetSystemTime64</span>() {
+    <span class="text-slate-500">// Utiliza tiempo Unix de 64 bits del SO</span>
+    <span class="text-purple-400">return</span> (<span class="text-blue-400">uint64_t</span>)std::time(<span class="text-blue-400">nullptr</span>);
+}
+
+<span class="text-blue-400">void</span> <span class="text-emerald-300">PatchWiiRTCLimit</span>() {
+    <span class="text-slate-500">// Elimina la comprobación &lt; 2036</span>
+    g_RTCMaxYear = <span class="text-amber-300">9999</span>;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN NUEVA: PORTS NATIVOS Y PLATAFORMAS HOMEBREW -->
+        <section id="consolas" class="space-y-8">
+            <div class="text-center max-w-2xl mx-auto space-y-2">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-100 text-cyan-800 text-xs font-bold">
+                    <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+                    <span>Ecosistema de Hardware Destino</span>
+                </div>
+                <h2 class="text-3xl font-bold text-slate-800">Ports Nativos en Plataformas con Homebrew</h2>
+                <p class="text-slate-600 text-sm">
+                    Una vez descompilado el código fuente de un juego de Wii, la comunidad puede crear ejecutable nativos para múltiples consolas con escena de *Homebrew* activa, eliminando para siempre las barreras de emulación y hardware antiguo.
+                </p>
+            </div>
+
+            <!-- Grid de Consolas de Destino -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <!-- Nintendo Switch -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm console-card flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="p-3 bg-red-100 text-red-600 rounded-xl">
+                                <i data-lucide="gamepad-2" class="w-6 h-6"></i>
+                            </span>
+                            <span class="text-xs font-mono font-bold px-2 py-1 bg-slate-100 text-slate-700 rounded">ARM64</span>
+                        </div>
+                        <h3 class="font-bold text-xl text-slate-800 mb-1">Nintendo Switch</h3>
+                        <p class="text-xs font-semibold text-red-600 mb-3">Atmosphère CFW</p>
+                        <p class="text-slate-600 text-xs leading-relaxed mb-4">
+                            Destino natural para ports de Wii. La arquitectura ARM64 y el soporte nativo para mandos Joy-Con y giroscopio permiten preservar la experiencia de control por movimiento sin latencia.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-slate-100 text-xs text-slate-500 font-medium">
+                        ✦ Control de movimiento nativo
+                    </div>
+                </div>
+
+                <!-- PlayStation 4 -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm console-card flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="p-3 bg-blue-100 text-blue-600 rounded-xl">
+                                <i data-lucide="tv" class="w-6 h-6"></i>
+                            </span>
+                            <span class="text-xs font-mono font-bold px-2 py-1 bg-slate-100 text-slate-700 rounded">x86_64</span>
+                        </div>
+                        <h3 class="font-bold text-xl text-slate-800 mb-1">PlayStation 4</h3>
+                        <p class="text-xs font-semibold text-blue-600 mb-3">Jailbreak / Mira / GoldHEN</p>
+                        <p class="text-slate-600 text-xs leading-relaxed mb-4">
+                            Gracias a su arquitectura x86_64 y potentes capacidades gráficas, los ports recompilados pueden renderizarse a 4K 60FPS con texturas mejoradas, manteniendo tiempo real vía PSN/System Clock.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-slate-100 text-xs text-slate-500 font-medium">
+                        ✦ Resolución 4K / 60 FPS
+                    </div>
+                </div>
+
+                <!-- PlayStation 3 -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm console-card flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="p-3 bg-indigo-100 text-indigo-600 rounded-xl">
+                                <i data-lucide="box" class="w-6 h-6"></i>
+                            </span>
+                            <span class="text-xs font-mono font-bold px-2 py-1 bg-slate-100 text-slate-700 rounded">Cell / PPC</span>
+                        </div>
+                        <h3 class="font-bold text-xl text-slate-800 mb-1">PlayStation 3</h3>
+                        <p class="text-xs font-semibold text-indigo-600 mb-3">Evilnat CFW / HEN</p>
+                        <p class="text-slate-600 text-xs leading-relaxed mb-4">
+                            Aunque requiere adaptar la compilación a la arquitectura de microprocesador Cell BE, comparte similitudes con PowerPC de la Wii, facilitando puertos nativos optimizados mediante bibliotecas Homebrew SDK.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-slate-100 text-xs text-slate-500 font-medium">
+                        ✦ Compatibilidad PowerPC/Cell
+                    </div>
+                </div>
+
+                <!-- Xbox 360 -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm console-card flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="p-3 bg-emerald-100 text-emerald-600 rounded-xl">
+                                <i data-lucide="disc" class="w-6 h-6"></i>
+                            </span>
+                            <span class="text-xs font-mono font-bold px-2 py-1 bg-slate-100 text-slate-700 rounded">PowerPC</span>
+                        </div>
+                        <h3 class="font-bold text-xl text-slate-800 mb-1">Xbox 360</h3>
+                        <p class="text-xs font-semibold text-emerald-600 mb-3">RGH / JTAG Mod</p>
+                        <p class="text-slate-600 text-xs leading-relaxed mb-4">
+                            Al compartir la arquitectura de CPU Xenon basada en PowerPC con la arquitectura Broadway de la Wii, la recompilación resulta sumamente directa y eficiente en consolas modificadas con RGH.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-slate-100 text-xs text-slate-500 font-medium">
+                        ✦ Misma arquitectura CPU (PowerPC)
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- PC & Dispositivos Portátiles Adicionales -->
+            <div class="bg-slate-900 text-white p-6 sm:p-8 rounded-2xl border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="space-y-2">
+                    <div class="flex items-center gap-2 text-cyan-400 font-bold text-sm">
+                        <i data-lucide="laptop" class="w-4 h-4"></i>
+                        <span>PC, Handhelds ARM/x86 y Preservación Abierta</span>
+                    </div>
+                    <h3 class="text-xl font-bold">Steam Deck, Windows, Linux & Android</h3>
+                    <p class="text-slate-400 text-xs max-w-2xl leading-relaxed">
+                        Además de las consolas retro y de anterior generación, la recompilación sobre OpenGL/Vulkan facilita que los juegos de Wii funcionen de forma nativa en sistemas operativos abiertos sin necesidad de depender del hardware original de Nintendo.
+                    </p>
+                </div>
+                <div class="flex items-center gap-2 shrink-0">
+                    <span class="px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-xs font-mono text-cyan-300">Windows / Linux</span>
+                    <span class="px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-xs font-mono text-emerald-300">Android ARM64</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resumen General -->
+        <section class="wii-card p-6 sm:p-8">
             <div class="max-w-3xl mx-auto space-y-6">
                 <div class="flex items-center gap-3">
                     <div class="p-3 bg-cyan-500 text-white rounded-xl">
                         <i data-lucide="shield-check" class="w-6 h-6"></i>
                     </div>
                     <div>
-                        <h2 class="text-2xl font-bold text-slate-800">¿Cómo salvar la preservación en el Retrogaming?</h2>
-                        <p class="text-slate-500 text-sm">Alternativas y parches creados por la comunidad de modding.</p>
+                        <h2 class="text-2xl font-bold text-slate-800">Línea de Tiempo para la Preservación</h2>
+                        <p class="text-slate-500 text-sm">Estrategias combinadas para la comunidad Retrogaming.</p>
                     </div>
                 </div>
 
-                <div class="space-y-4 text-slate-600 text-sm leading-relaxed">
-                    <p>
-                        Afortunadamente, la escena de la preservación de videojuegos (*homebrew*) no se queda de brazos cruzados. Para cuando llegue el año 2036, la comunidad cuenta con varias soluciones:
-                    </p>
-                    <div class="grid sm:grid-cols-2 gap-4 pt-2">
-                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
-                            <h4 class="font-bold text-slate-800 mb-1 flex items-center gap-2">
-                                <i data-lucide="code" class="w-4 h-4 text-cyan-600"></i> Parches de Firmware (Homebrew)
-                            </h4>
-                            <p class="text-xs text-slate-500">
-                                Cios y cargadores como Priiloader o USB Loader GX podrán interceptar las llamadas al sistema del RTC y simular o ampliar el rango de años.
-                            </p>
-                        </div>
-                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
-                            <h4 class="font-bold text-slate-800 mb-1 flex items-center gap-2">
-                                <i data-lucide="monitor" class="w-4 h-4 text-cyan-600"></i> Emulación (Dolphin)
-                            </h4>
-                            <p class="text-xs text-slate-500">
-                                Los emuladores permiten anular los límites de hardware e inyectar fechas arbitrarias, garantizando que el software siga siendo totalmente ejecutable.
-                            </p>
-                        </div>
+                <div class="grid sm:grid-cols-3 gap-4 text-slate-600 text-sm">
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                        <h4 class="font-bold text-slate-800 mb-1 flex items-center gap-2">
+                            <i data-lucide="wrench" class="w-4 h-4 text-cyan-600"></i> Parches RTC (Console)
+                        </h4>
+                        <p class="text-xs text-slate-500">
+                            Modificaciones temporales mediante Priiloader y loaders USB para mantener funcional el hardware original de la Wii.
+                        </p>
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                        <h4 class="font-bold text-slate-800 mb-1 flex items-center gap-2">
+                            <i data-lucide="monitor" class="w-4 h-4 text-cyan-600"></i> Emulación Avanzada
+                        </h4>
+                        <p class="text-xs text-slate-500">
+                            Overrides en Dolphin que reemplazan las respuestas del chip RTC por fechas virtuales o sincronización NTP.
+                        </p>
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                        <h4 class="font-bold text-slate-800 mb-1 flex items-center gap-2">
+                            <i data-lucide="code-2" class="w-4 h-4 text-cyan-600"></i> Recompilación Nativa
+                        </h4>
+                        <p class="text-xs text-slate-500">
+                            Ports a Switch, PS4, PS3, 360 y PC desde el código descompilado en decomp.dev con soporte de tiempo moderno en 64 bits.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -262,7 +443,7 @@ permalink: /wii2035
         <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
             <div class="flex items-center gap-2">
                 <i data-lucide="clock" class="w-4 h-4 text-cyan-500"></i>
-                <span>Wii RTC 2035 Clock Limit Tribute & Educational Project</span>
+                <span>Wii RTC 2035 Clock Limit & Cross-Platform Decompilation Project</span>
             </div>
             <p>Diseñado con HTML5, Tailwind CSS y JavaScript Moderno.</p>
         </div>
@@ -281,7 +462,7 @@ permalink: /wii2035
             const difference = targetDate - now;
 
             if (difference <= 0) {
-                document.getElementById('days').innerText = "00";
+                document.getElementById('days').innerText = "0000";
                 document.getElementById('hours').innerText = "00";
                 document.getElementById('minutes').innerText = "00";
                 document.getElementById('seconds').innerText = "00";
