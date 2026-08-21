@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wii Y2K35 - El Juicio Final del Reloj de la Nintendo Wii</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Inter:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+            color: #333333;
+        }
+
+        h1, h2, h3, .wii-font {
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        /* Estilos inspirados en la interfaz retro-futurista limpia de la Wii */
+        .wii-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 2px solid #e0e8f0;
+            box-shadow: 0 10px 25px -5px rgba(0, 150, 214, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            border-radius: 24px;
+        }
+
+        .wii-btn {
+            background: linear-gradient(180deg, #00d2ff 0%, #0096d6 100%);
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 4px 14px 0 rgba(0, 150, 214, 0.39);
+        }
+
+        .wii-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 150, 214, 0.54);
+        }
+
+        .glow-text {
+            text-shadow: 0 0 15px rgba(0, 180, 216, 0.4);
+        }
+
+        /* Animación suave para los números del contador */
+        .time-box {
+            background: linear-gradient(135deg, #ffffff 0%, #e6f4f9 100%);
+            border: 2px solid #bbeeef;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-white">
+
+    <!-- Encabezado / Branding Wii -->
+    <header class="w-full bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-full bg-cyan-500 flex items-center justify-center text-white font-bold text-xl shadow-md">
+                    W
+                </div>
+                <div>
+                    <span class="text-2xl font-bold tracking-wider text-slate-700 wii-font">Wii <span class="text-cyan-500">2035</span></span>
+                    <span class="text-xs block text-slate-400 -mt-1 font-semibold">RTC Clock Limit Project</span>
+                </div>
+            </div>
+            <a href="#explicacion" class="hidden sm:flex items-center space-x-1 text-sm font-semibold text-cyan-600 hover:text-cyan-700">
+                <span>¿Por qué sucede?</span>
+                <i data-lucide="arrow-down" class="w-4 h-4"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="max-w-6xl mx-auto px-4 py-8 flex-grow w-full space-y-12">
+
+        <!-- Sección Principal: Reloj y Cuenta Regresiva -->
+        <section class="text-center space-y-6 pt-4">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-100 border border-cyan-300 text-cyan-800 text-xs sm:text-sm font-semibold">
+                <i data-lucide="alert-triangle" class="w-4 h-4 text-cyan-600"></i>
+                <span>Fecha Límite del Reloj Interno de la Wii</span>
+            </div>
+
+            <h1 class="text-4xl sm:text-6xl font-bold text-slate-800 tracking-tight glow-text">
+                31 de Diciembre de 2035
+            </h1>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto font-light">
+                A las <span class="font-semibold text-slate-800">23:59:59</span>, el reloj del sistema de la Nintendo Wii alcanzará su límite absoluto programado de fábrica.
+            </p>
+
+            <!-- Renderizador de Cuenta Regresiva -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto pt-4">
+                <div class="time-box p-4 sm:p-6 rounded-2xl flex flex-col items-center justify-center shadow-sm">
+                    <span id="days" class="text-4xl sm:text-6xl font-bold text-cyan-600 wii-font">0000</span>
+                    <span class="text-xs sm:text-sm font-semibold text-slate-500 uppercase tracking-wider mt-1">Días</span>
+                </div>
+                <div class="time-box p-4 sm:p-6 rounded-2xl flex flex-col items-center justify-center shadow-sm">
+                    <span id="hours" class="text-4xl sm:text-6xl font-bold text-cyan-600 wii-font">00</span>
+                    <span class="text-xs sm:text-sm font-semibold text-slate-500 uppercase tracking-wider mt-1">Horas</span>
+                </div>
+                <div class="time-box p-4 sm:p-6 rounded-2xl flex flex-col items-center justify-center shadow-sm">
+                    <span id="minutes" class="text-4xl sm:text-6xl font-bold text-cyan-600 wii-font">00</span>
+                    <span class="text-xs sm:text-sm font-semibold text-slate-500 uppercase tracking-wider mt-1">Minutos</span>
+                </div>
+                <div class="time-box p-4 sm:p-6 rounded-2xl flex flex-col items-center justify-center shadow-sm">
+                    <span id="seconds" class="text-4xl sm:text-6xl font-bold text-cyan-600 wii-font">00</span>
+                    <span class="text-xs sm:text-sm font-semibold text-slate-500 uppercase tracking-wider mt-1">Segundos</span>
+                </div>
+            </div>
+
+            <!-- Indicador de Estado -->
+            <div class="pt-2 text-xs text-slate-500 flex items-center justify-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span>Sincronizado con el reloj del cliente en tiempo real</span>
+            </div>
+        </section>
+
+        <!-- Sección Educativa: Explicación Técnica -->
+        <section id="explicacion" class="grid md:grid-cols-2 gap-8 items-stretch">
+            <div class="wii-card p-6 sm:p-8 flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 rounded-2xl bg-cyan-100 text-cyan-600 flex items-center justify-center mb-4">
+                        <i data-lucide="cpu" class="w-6 h-6"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-slate-800 mb-3">¿Por qué el reloj de Wii se detiene en 2035?</h2>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        A diferencia del famoso <em>Efecto 2038</em> (Problema del año 2038 que afecta a sistemas Unix de 32 bits), el límite del año 2035 en la Nintendo Wii se debe a una especificación arbitraria definida por Nintendo en el firmware del RTC (Real Time Clock) y en los rangos de configuración del menú del sistema.
+                    </p>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        El menú oficial de la consola no permite seleccionar una fecha posterior al **31/12/2035**. Una vez que el contador llegue al segundo 23:59:59 de esa fecha, el reloj interno no podrá avanzar al año 2036 de manera estándar, congelándose o reiniciando variables internas según cómo responda el software.
+                    </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-slate-200/60 text-xs text-slate-500 flex justify-between">
+                    <span>Límite de Hardware/Firmware</span>
+                    <span class="font-semibold text-slate-700">Rango: 2000 - 2035</span>
+                </div>
+            </div>
+
+            <div class="wii-card p-6 sm:p-8 flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center mb-4">
+                        <i data-lucide="gamepad-2" class="w-6 h-6"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-slate-800 mb-3">Impacto en el Retrogaming</h2>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        Muchos títulos icónicos de la consola utilizan eventos basados en el tiempo real. Al superar la fecha límite, la lógica de estos juegos puede romperse por completo:
+                    </p>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-500 shrink-0 mt-0.5"></i>
+                            <span><strong>Animal Crossing: City Folk:</strong> Pérdida de festivales, crecimiento impredecible de maleza y corrupción de eventos estacionales.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-500 shrink-0 mt-0.5"></i>
+                            <span><strong>Wii Sports / Wii Fit:</strong> Los calendarios de seguimiento de salud, entrenamientos y gráficos de edad Wii quedarán inoperativos.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-500 shrink-0 mt-0.5"></i>
+                            <span><strong>Juegos de Simulación y Granja:</strong> Títulos como *Harvest Moon* o *Los Sims 3* experimentarán bloqueos en guardados o bucles temporales infinitos.</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="mt-6 pt-4 border-t border-slate-200/60 text-xs text-slate-500 flex justify-between">
+                    <span>Efectos Principales</span>
+                    <span class="font-semibold text-slate-700">EventosRTC / Guardados</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Juegos más Afectados Grid -->
+        <section class="space-y-6">
+            <div class="text-center max-w-xl mx-auto">
+                <h2 class="text-3xl font-bold text-slate-800">Juegos Dependientes del Reloj Real</h2>
+                <p class="text-slate-500 text-sm mt-1">Estos son los títulos que más sufrirán el impacto al llegar a 2036.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Tarjeta Juego 1 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="font-bold text-lg text-slate-800">Animal Crossing: City Folk</h3>
+                        <span class="px-2.5 py-1 bg-red-100 text-red-700 text-xs rounded-full font-semibold">Crítico</span>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        El juego depende al 100% de la hora del sistema. Sin poder avanzar más allá de 2035, no habrá nuevos eventos anuales, cumpleaños ni cambios de estación legítimos.
+                    </p>
+                </div>
+
+                <!-- Tarjeta Juego 2 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="font-bold text-lg text-slate-800">Wii Fit / Wii Fit Plus</h3>
+                        <span class="px-2.5 py-1 bg-amber-100 text-amber-700 text-xs rounded-full font-semibold">Alto</span>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        El diario de seguimiento de peso y gráficos de progreso no podrán registrar días posteriores a 2035, arruinando la continuidad de los perfiles de usuario.
+                    </p>
+                </div>
+
+                <!-- Tarjeta Juego 3 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="font-bold text-lg text-slate-800">Pikmin 2 (Guardados)</h3>
+                        <span class="px-2.5 py-1 bg-blue-100 text-blue-700 text-xs rounded-full font-semibold">Moderado</span>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Los estampados de fecha y hora en los archivos de guardado (*timestamps*) pueden generar inconsistencias o marcar datos como corruptos en la memoria.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Preservación y Soluciones Futuras -->
+        <section class="wii-card p-6 sm:p-10">
+            <div class="max-w-3xl mx-auto space-y-6">
+                <div class="flex items-center gap-3">
+                    <div class="p-3 bg-cyan-500 text-white rounded-xl">
+                        <i data-lucide="shield-check" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-800">¿Cómo salvar la preservación en el Retrogaming?</h2>
+                        <p class="text-slate-500 text-sm">Alternativas y parches creados por la comunidad de modding.</p>
+                    </div>
+                </div>
+
+                <div class="space-y-4 text-slate-600 text-sm leading-relaxed">
+                    <p>
+                        Afortunadamente, la escena de la preservación de videojuegos (*homebrew*) no se queda de brazos cruzados. Para cuando llegue el año 2036, la comunidad cuenta con varias soluciones:
+                    </p>
+                    <div class="grid sm:grid-cols-2 gap-4 pt-2">
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                            <h4 class="font-bold text-slate-800 mb-1 flex items-center gap-2">
+                                <i data-lucide="code" class="w-4 h-4 text-cyan-600"></i> Parches de Firmware (Homebrew)
+                            </h4>
+                            <p class="text-xs text-slate-500">
+                                Cios y cargadores como Priiloader o USB Loader GX podrán interceptar las llamadas al sistema del RTC y simular o ampliar el rango de años.
+                            </p>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                            <h4 class="font-bold text-slate-800 mb-1 flex items-center gap-2">
+                                <i data-lucide="monitor" class="w-4 h-4 text-cyan-600"></i> Emulación (Dolphin)
+                            </h4>
+                            <p class="text-xs text-slate-500">
+                                Los emuladores permiten anular los límites de hardware e inyectar fechas arbitrarias, garantizando que el software siga siendo totalmente ejecutable.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Pie de página -->
+    <footer class="bg-white border-t border-slate-200 py-6 mt-12">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+            <div class="flex items-center gap-2">
+                <i data-lucide="clock" class="w-4 h-4 text-cyan-500"></i>
+                <span>Wii RTC 2035 Clock Limit Tribute & Educational Project</span>
+            </div>
+            <p>Diseñado con HTML5, Tailwind CSS y JavaScript Moderno.</p>
+        </div>
+    </footer>
+
+    <!-- Lógica de Cuenta Regresiva JavaScript -->
+    <script>
+        // Inicializar Iconos de Lucide
+        lucide.createIcons();
+
+        // Fecha objetivo: 31 de Diciembre de 2035 a las 23:59:59
+        const targetDate = new Date('December 31, 2035 23:59:59').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            if (difference <= 0) {
+                document.getElementById('days').innerText = "00";
+                document.getElementById('hours').innerText = "00";
+                document.getElementById('minutes').innerText = "00";
+                document.getElementById('seconds').innerText = "00";
+                return;
+            }
+
+            // Cálculos de tiempo
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            // Formatear cadenas con ceros a la izquierda
+            document.getElementById('days').innerText = String(days).padStart(4, '0');
+            document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+            document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+        }
+
+        // Ejecutar inmediatamente y luego actualizar cada segundo
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
