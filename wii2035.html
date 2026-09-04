@@ -7,7 +7,7 @@ permalink: /wii2035
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wii Y2K35 - Decompilation & Native Cross-Platform Ports</title>
+    <title>Wii Y2K35 - RTC Limits, vWii & Wii U Ports</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons -->
@@ -71,12 +71,12 @@ permalink: /wii2035
                 </div>
                 <div>
                     <span class="text-2xl font-bold tracking-wider text-slate-700 wii-font">Wii <span class="text-cyan-500">2035</span></span>
-                    <span class="text-xs block text-slate-400 -mt-1 font-semibold">RTC Clock Limit & Cross-Platform Decompilation</span>
+                    <span class="text-xs block text-slate-400 -mt-1 font-semibold">RTC Clock Limit, vWii Paradox & Wii U 2079</span>
                 </div>
             </div>
             <nav class="hidden md:flex items-center space-x-6 text-sm font-semibold text-slate-600">
                 <a href="#explicacion" class="hover:text-cyan-600 transition">El Problema RTC</a>
-                <a href="#impacto" class="hover:text-cyan-600 transition">Juegos Afectados</a>
+                <a href="#vwii" class="hover:text-cyan-600 transition">El Dilema vWii / Wii U</a>
                 <a href="#decomp" class="hover:text-cyan-600 transition">decomp.dev</a>
                 <a href="#consolas" class="text-cyan-600 hover:text-cyan-700 font-bold flex items-center gap-1">
                     <i data-lucide="gamepad" class="w-4 h-4"></i>
@@ -93,14 +93,14 @@ permalink: /wii2035
         <section class="text-center space-y-6 pt-4">
             <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-100 border border-cyan-300 text-cyan-800 text-xs sm:text-sm font-semibold">
                 <i data-lucide="alert-triangle" class="w-4 h-4 text-cyan-600"></i>
-                <span>Fecha Límite del Reloj Interno de la Nintendo Wii</span>
+                <span>Fecha Límite del Reloj Interno de la Nintendo Wii (y vWii)</span>
             </div>
 
             <h1 class="text-4xl sm:text-6xl font-bold text-slate-800 tracking-tight glow-text">
                 31 de Diciembre de 2035
             </h1>
             <p class="text-lg text-slate-600 max-w-2xl mx-auto font-light">
-                A las <span class="font-semibold text-slate-800">23:59:59</span>, el reloj interno (RTC) de la Nintendo Wii alcanzará su límite programado de fábrica.
+                A las <span class="font-semibold text-slate-800">23:59:59</span>, el reloj del sistema de la Nintendo Wii alcanzará su límite absoluto programado de fábrica.
             </p>
 
             <!-- Renderizador de Cuenta Regresiva -->
@@ -139,7 +139,7 @@ permalink: /wii2035
                     </div>
                     <h2 class="text-2xl font-bold text-slate-800 mb-3">¿Por qué el reloj de Wii se detiene en 2035?</h2>
                     <p class="text-slate-600 text-sm leading-relaxed mb-4">
-                        A diferencia del conocido problema del año 2038 que afecta a ciertos entornos Unix de 32 bits, el límite del año 2035 en la Nintendo Wii se debe a una restricción arbitraria definida por Nintendo en el firmware del RTC (Real Time Clock) y en la interfaz gráfica de configuración del menú del sistema.
+                        A diferencia del problema del año 2038 que afecta a ciertos entornos Unix de 32 bits, el límite del año 2035 en la Nintendo Wii se debe a una restricción arbitraria definida por Nintendo en el firmware del RTC (Real Time Clock) y en la interfaz gráfica del menú del sistema.
                     </p>
                     <p class="text-slate-600 text-sm leading-relaxed">
                         El menú oficial no permite seleccionar una fecha posterior al **31/12/2035**. Al rebasar ese segundo final, los contadores de tiempo del sistema sufren un desbordamiento o reinicio que corrompe las llamadas a la API de tiempo que realizan los videojuegos.
@@ -182,42 +182,60 @@ permalink: /wii2035
             </div>
         </section>
 
-        <!-- Juegos Afectados -->
-        <section id="impacto" class="space-y-6">
-            <div class="text-center max-w-xl mx-auto">
-                <h2 class="text-3xl font-bold text-slate-800">Juegos Dependientes del Reloj Real</h2>
-                <p class="text-slate-500 text-sm mt-1">Títulos cuya jugabilidad depende directamente de la fecha de la consola.</p>
+        <!-- SECCIÓN ESPECIAL: EL CASO DE WII U Y EL MODO VWII -->
+        <section id="vwii" class="space-y-6">
+            <div class="text-center max-w-2xl mx-auto space-y-2">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-100 text-indigo-800 text-xs font-bold">
+                    <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+                    <span>La Paradoja de Hardware de Nintendo Wii U</span>
+                </div>
+                <h2 class="text-3xl font-bold text-slate-800">El Paradigma Wii U (2079) vs. Modo vWii (2035)</h2>
+                <p class="text-slate-600 text-sm">
+                    La consola sucesora presenta un contraste fascinante entre su entorno nativo y su capa de retrocompatibilidad.
+                </p>
             </div>
 
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
-                    <div class="flex items-center justify-between mb-3">
-                        <h3 class="font-bold text-lg text-slate-800">Animal Crossing: City Folk</h3>
-                        <span class="px-2.5 py-1 bg-red-100 text-red-700 text-xs rounded-full font-semibold">Crítico</span>
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Tarjeta Wii U Nativa -->
+                <div class="bg-gradient-to-br from-slate-900 to-indigo-950 text-white p-6 sm:p-8 rounded-3xl border border-indigo-900/50 shadow-xl flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-xs font-mono border border-indigo-500/30">Modo Nativo Wii U</span>
+                            <span class="text-2xl font-bold text-indigo-400 wii-font">Año 2079</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Reloj Ampliado hasta el 31/12/2079</h3>
+                        <p class="text-slate-300 text-xs leading-relaxed">
+                            El sistema operativo principal de Nintendo Wii U rediseñó la gestión del RTC, permitiendo configurar fechas oficialmente hasta el **31 de diciembre de 2079**. 
+                        </p>
+                        <p class="text-slate-300 text-xs leading-relaxed">
+                            Esto inmuniza a los juegos nativos de Wii U del fallo de 2035 y la posiciona como **una de las mejores consolas destino para albergar ports nativos** de títulos de GameCube y Wii derivados del proyecto <span class="text-cyan-300 font-mono">decomp.dev</span>.
+                        </p>
                     </div>
-                    <p class="text-slate-600 text-sm leading-relaxed">
-                        Al depender totalmente de la fecha del hardware, sin modificaciones en el código fuente resulta imposible continuar el ciclo vital de la ciudad tras 2035.
-                    </p>
+                    <div class="mt-6 pt-4 border-t border-indigo-900/80 flex items-center justify-between text-xs text-indigo-300">
+                        <span>Límite OS Nativo:</span>
+                        <span class="font-bold">31 de Diciembre de 2079 (23:59)</span>
+                    </div>
                 </div>
 
-                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
-                    <div class="flex items-center justify-between mb-3">
-                        <h3 class="font-bold text-lg text-slate-800">Wii Fit / Wii Fit Plus</h3>
-                        <span class="px-2.5 py-1 bg-amber-100 text-amber-700 text-xs rounded-full font-semibold">Alto</span>
+                <!-- Tarjeta vWii (Virtual Wii) -->
+                <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-md flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-3 py-1 bg-amber-100 text-amber-800 rounded-full text-xs font-mono font-bold">Modo vWii (Virtual Wii)</span>
+                            <span class="text-2xl font-bold text-amber-600 wii-font">Año 2035</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800">El "Talón de Aquiles" de la Retrocompatibilidad</h3>
+                        <p class="text-slate-600 text-xs leading-relaxed">
+                            Aunque la consola física es más moderna, cuando la Wii U ejecuta el modo **vWii (Virtual Wii)** para correr discos o canales originales de Wii, activa la arquitectura virtual aislada del sistema previo.
+                        </p>
+                        <p class="text-slate-600 text-xs leading-relaxed">
+                            Lamentablemente, **vWii hereda el mismo límite de reloj (31/12/2035)**. Si ejecutas *Animal Crossing: City Folk* dentro del canal vWii de una Wii U en el año 2036, sufrirá exactamente la misma falla técnica que en la consola física de 2006.
+                        </p>
                     </div>
-                    <p class="text-slate-600 text-sm leading-relaxed">
-                        Los diarios de IMC y pruebas de equilibrio sufren bloqueos al intentar graficar días que el sistema ya no puede procesar cronológicamente.
-                    </p>
-                </div>
-
-                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
-                    <div class="flex items-center justify-between mb-3">
-                        <h3 class="font-bold text-lg text-slate-800">Pikmin 2 & Metroid Prime</h3>
-                        <span class="px-2.5 py-1 bg-blue-100 text-blue-700 text-xs rounded-full font-semibold">Moderado</span>
+                    <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                        <span>Límite Capa vWii:</span>
+                        <span class="font-bold text-amber-600">31 de Diciembre de 2035 (23:59)</span>
                     </div>
-                    <p class="text-slate-600 text-sm leading-relaxed">
-                        Inconsistencias de ordenación en bloques de guardado. Los metadatos de fechas futuras entran en conflicto con las funciones de ordenación cronológica.
-                    </p>
                 </div>
             </div>
         </section>
@@ -253,7 +271,7 @@ permalink: /wii2035
                             Los proyectos organizados a través de **decomp.dev** reconstruyen el código fuente original en C/C++ de un juego comercial a partir del desensamblado de binarios PowerPC (`.dol` / `.rel` de Wii).
                         </p>
                         <p>
-                            Al conseguir una descompilación 1:1, los desarrolladores pueden compilar el código para arquitecturas modernas (x86_64, ARM64) y reemplazar el subsistema RTC de la consola por llamadas al sistema operativo anfitrión.
+                            Al conseguir una descompilación 1:1, los desarrolladores pueden compilar el código para arquitecturas modernas (x86_64, ARM64, Espresso) y reemplazar el subsistema RTC de la consola por llamadas al sistema operativo anfitrión.
                         </p>
                     </div>
 
@@ -277,7 +295,7 @@ permalink: /wii2035
             </div>
         </section>
 
-        <!-- SECCIÓN NUEVA: PORTS NATIVOS Y PLATAFORMAS HOMEBREW -->
+        <!-- SECCIÓN: PORTS NATIVOS Y PLATAFORMAS HOMEBREW -->
         <section id="consolas" class="space-y-8">
             <div class="text-center max-w-2xl mx-auto space-y-2">
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-100 text-cyan-800 text-xs font-bold">
@@ -286,13 +304,14 @@ permalink: /wii2035
                 </div>
                 <h2 class="text-3xl font-bold text-slate-800">Ports Nativos en Plataformas con Homebrew</h2>
                 <p class="text-slate-600 text-sm">
-                    Una vez descompilado el código fuente de un juego de Wii, la comunidad puede crear ejecutable nativos para múltiples consolas con escena de *Homebrew* activa, eliminando para siempre las barreras de emulación y hardware antiguo.
+                    Una vez descompilado el código fuente de un juego de Wii, la comunidad puede crear ejecutables nativos para múltiples consolas con escena de *Homebrew* activa, eliminando para siempre las barreras de emulación y hardware antiguo.
                 </p>
             </div>
 
             <!-- Grid de Consolas de Destino -->
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
+                
                 <!-- Nintendo Switch -->
                 <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm console-card flex flex-col justify-between">
                     <div>
@@ -312,6 +331,27 @@ permalink: /wii2035
                         ✦ Control de movimiento nativo
                     </div>
                 </div>
+                
+                <!-- Nintendo Wii U (Nativa) -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm console-card flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="p-3 bg-indigo-100 text-indigo-600 rounded-xl">
+                                <i data-lucide="monitor" class="w-6 h-6"></i>
+                            </span>
+                            <span class="text-xs font-mono font-bold px-2 py-1 bg-slate-100 text-slate-700 rounded">Espresso / PPC</span>
+                        </div>
+                        <h3 class="font-bold text-xl text-slate-800 mb-1">Nintendo Wii U</h3>
+                        <p class="text-xs font-semibold text-indigo-600 mb-3">Aroma / Tiramisu CFW</p>
+                        <p class="text-slate-600 text-xs leading-relaxed mb-4">
+                            Al ofrecer un entorno nativo con soporte hasta 2079 y arquitectura de procesador PowerPC (Espresso), recompilar juegos descompilados de Wii como apps nativas de Wii U es sumamente eficiente y permite jugar en el GamePad.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-slate-100 text-xs text-slate-500 font-medium">
+                        ✦ Límite 2079 / Pantalla GamePad
+                    </div>
+                </div>
+
 
                 <!-- PlayStation 4 -->
                 <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm console-card flex flex-col justify-between">
@@ -325,7 +365,7 @@ permalink: /wii2035
                         <h3 class="font-bold text-xl text-slate-800 mb-1">PlayStation 4</h3>
                         <p class="text-xs font-semibold text-blue-600 mb-3">Jailbreak / Mira / GoldHEN</p>
                         <p class="text-slate-600 text-xs leading-relaxed mb-4">
-                            Gracias a su arquitectura x86_64 y potentes capacidades gráficas, los ports recompilados pueden renderizarse a 4K 60FPS con texturas mejoradas, manteniendo tiempo real vía PSN/System Clock.
+                            Gracias a su arquitectura x86_64 y potentes capacidades gráficas, los ports recompilados pueden renderizarse a 4K 60FPS con texturas mejoradas, manteniendo tiempo real de 64 bits.
                         </p>
                     </div>
                     <div class="pt-3 border-t border-slate-100 text-xs text-slate-500 font-medium">
@@ -337,19 +377,19 @@ permalink: /wii2035
                 <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm console-card flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between mb-4">
-                            <span class="p-3 bg-indigo-100 text-indigo-600 rounded-xl">
+                            <span class="p-3 bg-sky-100 text-sky-600 rounded-xl">
                                 <i data-lucide="box" class="w-6 h-6"></i>
                             </span>
                             <span class="text-xs font-mono font-bold px-2 py-1 bg-slate-100 text-slate-700 rounded">Cell / PPC</span>
                         </div>
                         <h3 class="font-bold text-xl text-slate-800 mb-1">PlayStation 3</h3>
-                        <p class="text-xs font-semibold text-indigo-600 mb-3">Evilnat CFW / HEN</p>
+                        <p class="text-xs font-semibold text-sky-600 mb-3">Evilnat CFW / HEN</p>
                         <p class="text-slate-600 text-xs leading-relaxed mb-4">
-                            Aunque requiere adaptar la compilación a la arquitectura de microprocesador Cell BE, comparte similitudes con PowerPC de la Wii, facilitando puertos nativos optimizados mediante bibliotecas Homebrew SDK.
+                            Su microprocesador Cell BE comparte fundamentos con PowerPC, facilitando puertos nativos optimizados mediante bibliotecas Homebrew SDK de la comunidad.
                         </p>
                     </div>
                     <div class="pt-3 border-t border-slate-100 text-xs text-slate-500 font-medium">
-                        ✦ Compatibilidad PowerPC/Cell
+                        ✦ Compatibilidad de instrucciones PPC
                     </div>
                 </div>
 
@@ -365,7 +405,7 @@ permalink: /wii2035
                         <h3 class="font-bold text-xl text-slate-800 mb-1">Xbox 360</h3>
                         <p class="text-xs font-semibold text-emerald-600 mb-3">RGH / JTAG Mod</p>
                         <p class="text-slate-600 text-xs leading-relaxed mb-4">
-                            Al compartir la arquitectura de CPU Xenon basada en PowerPC con la arquitectura Broadway de la Wii, la recompilación resulta sumamente directa y eficiente en consolas modificadas con RGH.
+                            Al compartir la arquitectura de CPU Xenon basada en PowerPC con la arquitectura Broadway de la Wii, la recompilación resulta sumamente directa en consolas modificadas.
                         </p>
                     </div>
                     <div class="pt-3 border-t border-slate-100 text-xs text-slate-500 font-medium">
@@ -373,24 +413,26 @@ permalink: /wii2035
                     </div>
                 </div>
 
-            </div>
-
-            <!-- PC & Dispositivos Portátiles Adicionales -->
-            <div class="bg-slate-900 text-white p-6 sm:p-8 rounded-2xl border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6">
-                <div class="space-y-2">
-                    <div class="flex items-center gap-2 text-cyan-400 font-bold text-sm">
-                        <i data-lucide="laptop" class="w-4 h-4"></i>
-                        <span>PC, Handhelds ARM/x86 y Preservación Abierta</span>
+                <!-- PC & Handhelds -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm console-card flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="p-3 bg-purple-100 text-purple-600 rounded-xl">
+                                <i data-lucide="laptop" class="w-6 h-6"></i>
+                            </span>
+                            <span class="text-xs font-mono font-bold px-2 py-1 bg-slate-100 text-slate-700 rounded">Multi-Arch</span>
+                        </div>
+                        <h3 class="font-bold text-xl text-slate-800 mb-1">PC & Handhelds</h3>
+                        <p class="text-xs font-semibold text-purple-600 mb-3">Steam Deck / Win / Linux</p>
+                        <p class="text-slate-600 text-xs leading-relaxed mb-4">
+                            La recompilación abierta sobre OpenGL/Vulkan facilita que los juegos de Wii funcionen de forma nativa en sistemas portátiles x86 o ARM64 sin depender del hardware original de Nintendo.
+                        </p>
                     </div>
-                    <h3 class="text-xl font-bold">Steam Deck, Windows, Linux & Android</h3>
-                    <p class="text-slate-400 text-xs max-w-2xl leading-relaxed">
-                        Además de las consolas retro y de anterior generación, la recompilación sobre OpenGL/Vulkan facilita que los juegos de Wii funcionen de forma nativa en sistemas operativos abiertos sin necesidad de depender del hardware original de Nintendo.
-                    </p>
+                    <div class="pt-3 border-t border-slate-100 text-xs text-slate-500 font-medium">
+                        ✦ Multiplataforma / 64-bit
+                    </div>
                 </div>
-                <div class="flex items-center gap-2 shrink-0">
-                    <span class="px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-xs font-mono text-cyan-300">Windows / Linux</span>
-                    <span class="px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-xs font-mono text-emerald-300">Android ARM64</span>
-                </div>
+
             </div>
         </section>
 
@@ -413,7 +455,7 @@ permalink: /wii2035
                             <i data-lucide="wrench" class="w-4 h-4 text-cyan-600"></i> Parches RTC (Console)
                         </h4>
                         <p class="text-xs text-slate-500">
-                            Modificaciones temporales mediante Priiloader y loaders USB para mantener funcional el hardware original de la Wii.
+                            Modificaciones temporales mediante Priiloader y loaders USB para mantener funcional el hardware original de la Wii y vWii.
                         </p>
                     </div>
                     <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
@@ -429,7 +471,7 @@ permalink: /wii2035
                             <i data-lucide="code-2" class="w-4 h-4 text-cyan-600"></i> Recompilación Nativa
                         </h4>
                         <p class="text-xs text-slate-500">
-                            Ports a Switch, PS4, PS3, 360 y PC desde el código descompilado en decomp.dev con soporte de tiempo moderno en 64 bits.
+                            Ports a Switch, Wii U, PS4, PS3, 360 y PC desde el código descompilado en decomp.dev con soporte de tiempo moderno.
                         </p>
                     </div>
                 </div>
@@ -443,7 +485,7 @@ permalink: /wii2035
         <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
             <div class="flex items-center gap-2">
                 <i data-lucide="clock" class="w-4 h-4 text-cyan-500"></i>
-                <span>Wii RTC 2035 Clock Limit & Cross-Platform Decompilation Project</span>
+                <span>Wii RTC 2035 Clock Limit, vWii Paradox & Cross-Platform Preservation Project</span>
             </div>
             <p>Diseñado con HTML5, Tailwind CSS y JavaScript Moderno.</p>
         </div>
